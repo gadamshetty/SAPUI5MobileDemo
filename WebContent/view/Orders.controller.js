@@ -1,8 +1,13 @@
 sap.ui.controller("view.Orders", {
 
-	navPressed: function(){
-		//alert("nav press");
-		window.history.go(-1);
+	navPressed: function(evt){
+		var oHistory = sap.ui.core.routing.History.getInstance();
+		var oPrevHash = oHistory.getPreviousHash();
+		if (oPrevHash !== undefined) {
+			window.history.go(-1);
+		} else {
+			this.navTo("home", {}, true);
+		}
 	},
 /**
 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -34,7 +39,7 @@ sap.ui.controller("view.Orders", {
 		var orderid1 = selectedOrder.OrderID;
 		//console.log(this.empID);
 		//console.log(orderid1);
-		this._router.navTo("orderdetail",{empid:this.empID, orderid:orderid1});
+		this._router.navTo("orderdetail",{empid:this.empID, orderid:orderid1},true);
 	},
 /**
 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

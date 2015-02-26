@@ -31,7 +31,7 @@ sap.ui.jsview("view.Orders", {
 		var ordersPage = new sap.m.Page(this.createId("orderpage"), {
 			title:"Customer Orders",
 			showNavButton: true,
-			navButtonPress: oController.navPressed,
+			navButtonPress: function(){ oController.navPressed() },
 			content: [
 			          		oList
 					]

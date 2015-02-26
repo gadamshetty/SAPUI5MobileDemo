@@ -53,7 +53,8 @@ sap.ui.controller("view.OrderDetail", {
 																					        */
 			    
 			    var singleRowModel = new sap.ui.model.json.JSONModel();    
-			    model.read('/Employees('+this.empid+')/Orders('+this.orderid+')', null, null, false,   
+			    //model.read('/Employees('+this.empid+')/Orders('+this.orderid+')', null, null, false,   
+			    model.read('/Orders('+this.orderid+')', null, null, false,
 		                  function(oData, oResponse) {  
 		                             singleRowModel.setData(oData);  
 		                             thisview.setModel(singleRowModel, "singleRowModel"); 
