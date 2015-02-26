@@ -14,17 +14,24 @@ sap.ui.jsview("view.OrderDetail", {
 	*/ 
 	createContent : function(oController) {
 		//alert("rendi view");
-		var objH = new sap.m.ObjectHeader("orderdetalheader", {
-			number:"{ordermodel>/OrderID}"
+		var oTextView = new sap.ui.commons.TextView("textView", {
+		    // bind text property of textview to firstName property in the model
+		    text: "{singleRowModel>/ShipName}",
+		    tooltip: "First Name"
+		});
+		var oTxt = new sap.ui.commons.TextField("txtField", {
+		    // bind text property of textfield to firstName property in the model
+		    value: "{singleRowModel>/firstName}"
 		});
 		
-		 
-		var btn = new sap.m.Button("tst", {"text":"naresh"});
+		var obtn = new sap.m.Label("bt43431",{text:"{singleRowModel>firstName}"});
+		
+		var obtn1 = new sap.m.Label("bt43sdad431",{text:"test button"});
 		
  		return new sap.m.Page({
 			title: "Order Detail",
 			content: [
-			          	objH, btn
+oTextView, oTxt, obtn1
 			          	]
 		});
 	}

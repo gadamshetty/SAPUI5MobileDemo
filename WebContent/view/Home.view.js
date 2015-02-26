@@ -19,15 +19,16 @@ sap.ui.jsview("view.Home", {
 
 		
 		var oTemp = new sap.m.StandardListItem({
-		    title: "{FirstName}",
-		    description: "{Title}",
+		    title: "{contextmodel>FirstName}",
+		    description: "{contextmodel>Title}",
 		    type: sap.m.ListType.Active,
             press: function(evt){  oController.categorySelected(evt);}
 		});
 
 		//oTemp.attachPress(oController.categorySelected, this)
 		 
-		oList.bindItems("/Employees", oTemp);
+		oList.bindItems("contextmodel>/Employees", oTemp);
+		
 		//new sap.m.StandardListItem(sId?, mSettings?)
 
 		//return oList;

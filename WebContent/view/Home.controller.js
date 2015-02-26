@@ -22,7 +22,7 @@ sap.ui.controller("view.Home", {
         var caller = this;
         console.log(caller);
         //alert("category selected");
-        var thiscontext = evt.getSource().getBindingContext();
+        var thiscontext = evt.getSource().getBindingContext('contextmodel');
         //var viewModel = this.oParent.oParent.getModel();
         
         var thisemployee = thiscontext.getObject();

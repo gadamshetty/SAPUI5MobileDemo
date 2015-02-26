@@ -10,6 +10,7 @@ sap.ui.controller("view.OrderDetail", {
 		// need to run this url:	http://services.odata.org/Northwind/Northwind.svc/Employees(1)/Orders(10258)?$format=json
 		this._router = sap.ui.core.UIComponent.getRouterFor(this);
 		this._router.attachRoutePatternMatched(this._loadOrderDetail, this);
+		//this._router.getRoute("orderdetail").attachPatternMatched(this._loadOrderDetail, this);
 	},
 
 	_loadOrderDetail : function(oEvent) {
@@ -20,14 +21,59 @@ sap.ui.controller("view.OrderDetail", {
 			var oOrdersList = this.getView().byId("orderlist");
 			this.empid = oEvent.getParameter("arguments").empid;
 				this.orderid = oEvent.getParameter("arguments").orderid;
-				var model = sap.ui.getCore().byId('app').getModel();
+				var model = sap.ui.getCore().byId('app').getModel('contextmodel');
 				var orderscontext = model.getContext('/Employees('+this.empid+')/Orders('+this.orderid+')/');
-				console.log("order context is :");
-				console.log(orderscontext);
-				thismodel = new sap.ui.model.odata.ODataModel("proxy/http/services.odata.org/Northwind/Northwind.svc/Employees(1)/Orders(10258)/");
 			    var thisview = this.getView();
-			    //thisview.setBindingContext(orderscontext);
-			    thisview.setModel(thismodel,'ordermodel');
+			    //console.log("view model");
+			    //console.log(thisview.getModel());
+			    //thisview.setBindingContext(orderscontext,'singleRowModel');
+				//console.log('writing odata');
+				//console.log(oData);
+			    
+			    ////if above does not work....
+			    // create OData model from URL  
+			    /*
+																					        var oModel = new sap.ui.model.odata.ODataModel(uri, true);   
+																					        oTable.setModel(oModel);  
+																					          
+																					     // create an additional JSON model for the result of the read request    
+																					        var singleRowModel = new sap.ui.model.json.JSONModel();    
+																					        //sap.ui.getCore().setModel(beveragesModel, "beverages");  
+																					        oTable.setModel(singleRowModel, "singleRowModel");    
+																					         
+																					          oModel.read("/Category_Sales_for_1997('Beverages')", null, null, false,   
+																					                  function(oData, oResponse) {  
+																					                          var beverageResult = {results:[oData]};  
+																					                             singleRowModel.setData(beverageResult);  
+																					          },  function(oError){  
+																					              alert("Read failed");}  
+																					          );  
+																					          
+																					        oTable.bindRows("singleRowModel>/results"); 
+																					        */
+			    
+			    var singleRowModel = new sap.ui.model.json.JSONModel();    
+			    model.read('/Employees('+this.empid+')/Orders('+this.orderid+')', null, null, false,   
+		                  function(oData, oResponse) {  
+		                             singleRowModel.setData(oData);  
+		                             thisview.setModel(singleRowModel, "singleRowModel"); 
+		                             console.log("single view model is :");
+		                             console.log(singleRowModel);
+		          },  function(oError){  
+		              alert("Read failed");}  
+		          ); 
+			    
+			    
+/*		          
+		        var singleRowModel = new sap.ui.model.json.JSONModel();
+		        singleRowModel.setData({
+		        	"OrderID":"11122",
+		        	"firstName":"naresh shipping comp"
+        		});
+		        thisview.setModel(singleRowModel, "singleRowModel");    
+	*/	         
+	        
+		        
 		}
 	},
 

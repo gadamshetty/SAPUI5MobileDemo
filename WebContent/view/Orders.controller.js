@@ -17,12 +17,12 @@ sap.ui.controller("view.Orders", {
 	_loadOrders : function(oEvent) {
 		//alert("checking for router matched to load orders");
 		//debugger;
-		console.log(oEvent);
+		//console.log(oEvent);
 		if (oEvent.getParameter("name") === "orders") {
 			var oOrdersList = this.getView().byId("orderlist");
 			
 				this.empID = oEvent.getParameter("arguments").empid;
-				var model = sap.ui.getCore().byId('app').getModel();
+				var model = sap.ui.getCore().byId('app').getModel('contextmodel');
 				var orderscontext = model.getContext('/Employees('+this.empID+')');
 			    var thisview = this.getView();
 			    thisview.setBindingContext(orderscontext);
@@ -30,10 +30,10 @@ sap.ui.controller("view.Orders", {
 	},
 	orderSelected: function(evt){
 		
-		var selectedOrder = evt.getSource().getBindingContext().getObject();
+		var selectedOrder = evt.getSource().getBindingContext('contextmodel').getObject();
 		var orderid1 = selectedOrder.OrderID;
-		console.log(this.empID);
-		console.log(orderid1);
+		//console.log(this.empID);
+		//console.log(orderid1);
 		this._router.navTo("orderdetail",{empid:this.empID, orderid:orderid1});
 	},
 /**

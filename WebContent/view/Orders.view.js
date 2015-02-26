@@ -20,13 +20,13 @@ sap.ui.jsview("view.Orders", {
 		});
 		
 		var oTemp = new sap.m.StandardListItem({
-		    title: "{ShipName}",
-		    description: "{OrderID}",
+		    title: "{contextmodel>ShipName}",
+		    description: "{contextmodel>OrderID}",
 		    type: sap.m.ListType.Active,
             press: function(evt){  oController.orderSelected(evt);}
 		});
 		
-		oList.bindItems("Orders", oTemp);
+		oList.bindItems("contextmodel>/Orders", oTemp);
 		
 		var ordersPage = new sap.m.Page(this.createId("orderpage"), {
 			title:"Customer Orders",

@@ -132,11 +132,11 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.ui5.Component", {
 		//}
 
 		var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
-		console.log(sUrl);
+		//console.log(sUrl);
 		//if we do not set this property to false, this would lead to a synchronized request which blocks the ui
 		//oModel.setCountSupported(false);
 
-		oView.setModel(oModel);
+		oView.setModel(oModel,'contextmodel');
 
 		////create and set cart model
 		//var oCartModel = new sap.ui.model.json.JSONModel({
