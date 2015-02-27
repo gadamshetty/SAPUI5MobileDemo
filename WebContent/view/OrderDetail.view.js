@@ -42,10 +42,11 @@ sap.ui.jsview("view.OrderDetail", {
 		});
 		
 		var Freightcellitem = new sap.suite.ui.commons.HeaderCellItem("Freightcellitem",{
-			content : [new sap.ui.commons.TextView("freight", {
+			content : [new sap.suite.ui.commons.NumericContent("freight", {
 			    // bind text property of textview to firstName property in the model
-			    text: "{singleRowModel>/Freight}",
-			    tooltip: "Freight Quantity"
+			    value: "{singleRowModel>/Freight}",
+			    tooltip: "Freight Quantity",
+			    scale:"Kg"
 			})]
 		});
 		
