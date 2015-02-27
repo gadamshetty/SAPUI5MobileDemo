@@ -13,26 +13,102 @@ sap.ui.jsview("view.OrderDetail", {
 	* @memberOf view.OrderDetail
 	*/ 
 	createContent : function(oController) {
-		//alert("rendi view");
-		var oTextView = new sap.ui.commons.TextView("textView", {
+		
+		
+		//first cell
+		var shipname = new sap.ui.commons.TextView("customertextview", {
 		    // bind text property of textview to firstName property in the model
 		    text: "{singleRowModel>/ShipName}",
-		    tooltip: "First Name"
-		});
-		var oTxt = new sap.ui.commons.TextField("txtField", {
-		    // bind text property of textfield to firstName property in the model
-		    value: "{singleRowModel>/firstName}"
+		    tooltip: "Ship Name"
 		});
 		
-		var obtn = new sap.m.Label("bt43431",{text:"{singleRowModel>firstName}"});
+		var customercellitem = new sap.suite.ui.commons.HeaderCellItem("customercellitem",{
+			content : shipname
+		});
 		
-		var obtn1 = new sap.m.Label("bt43sdad431",{text:"test button"});
+		var customercell = new sap.suite.ui.commons.HeaderCell("customercell", {
+			north:customercellitem
+		});
+		
+		//second cell
+		var orderdate = new sap.ui.commons.TextView("orderdt", {
+		    // bind text property of textview to firstName property in the model
+		    text: "{singleRowModel>/OrderDate}",
+		    tooltip: "Order Date"
+		});
+		
+		var orderdtcellitem = new sap.suite.ui.commons.HeaderCellItem("orderdtcellitem",{
+			content : orderdate
+		});
+		
+		var Freightcellitem = new sap.suite.ui.commons.HeaderCellItem("Freightcellitem",{
+			content : [new sap.ui.commons.TextView("freight", {
+			    // bind text property of textview to firstName property in the model
+			    text: "{singleRowModel>/Freight}",
+			    tooltip: "Freight Quantity"
+			})]
+		});
+		
+		var orderdtcell = new sap.suite.ui.commons.HeaderCell("orderdtcell", {
+			north:orderdtcellitem,
+			south:Freightcellitem
+		});
+		
+		//third cell, shipping info
+		var shipaddr = new sap.suite.ui.commons.HeaderCellItem("shipaddr",{
+			content : [new sap.ui.commons.TextView("txtshipaddr", {
+			    // bind text property of textview to firstName property in the model
+			    text: "{singleRowModel>/ShipAddress}",
+			    tooltip: "Ship Address"
+			})]
+		});
+		
+		var shipcity = new sap.suite.ui.commons.HeaderCellItem("shipcity",{
+			content : [new sap.ui.commons.TextView("txtshipcity", {
+			    // bind text property of textview to firstName property in the model
+			    text: "{singleRowModel>/ShipCity}",
+			    tooltip: "Ship City"
+			})]
+		});
+		
+
+		var shipzip = new sap.suite.ui.commons.HeaderCellItem("shipzip",{
+			content : [new sap.ui.commons.TextView("txtshipzip", {
+			    // bind text property of textview to firstName property in the model
+			    text: "{singleRowModel>/ShipPostalCode}",
+			    tooltip: "Ship Postal Code"
+			})]
+		});
+		
+
+		var shipcountry = new sap.suite.ui.commons.HeaderCellItem("shipcountry",{
+			content : [new sap.ui.commons.TextView("txtshipcountry", {
+			    // bind text property of textview to firstName property in the model
+			    text: "{singleRowModel>/ShipCountry}",
+			    tooltip: "Ship Country"
+			})]
+		});
+		
+		var shipcell = new sap.suite.ui.commons.HeaderCell("shipcell", {
+			north:shipaddr,
+			south:shipcountry,
+			east:shipzip,
+			west:shipcity
+		});
+		
+		//header container
+		var hc = new sap.suite.ui.commons.HeaderContainer("detailhc",{
+			showDividers:true,
+			items:[customercell, orderdtcell, shipcell]
+		});
+		
+	
 		
  		return new sap.m.Page({
 			title: "Order Detail",
 			content: [
-oTextView, oTxt, obtn1
-			          	]
+	          	hc
+          	]
 		});
 	}
 
