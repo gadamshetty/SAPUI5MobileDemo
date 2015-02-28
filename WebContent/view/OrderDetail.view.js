@@ -104,11 +104,57 @@ sap.ui.jsview("view.OrderDetail", {
 		});
 		
 	
+		//Order Product Details.............................
 		
+
+		
+		var oList = new sap.m.List('productlist', {
+		    headerText : "Products",
+		    noDataText: "No Products Found",
+		    columns:[
+		             	new sap.m.Column("qt",{
+		             		header : new sap.ui.commons.TextView("tftxtprodQuantity", {"text":"Quantity" })}),
+	             		new sap.m.Column("up",{
+			             		header : new sap.ui.commons.TextView("tftxtprodunitpr", {"text":"Unit Price" })})
+		             	 
+	             	]
+		});
+
+		
+		var oTemp = new sap.m.ColumnListItem({
+		    cells:[
+						new sap.ui.commons.TextView("txtprodQuantity", {
+						    text: "{singleRowModel>Quantity}",
+						    tooltip: "Quantity"
+						}),
+						new sap.ui.commons.TextView("txtprodUnitPrice", {
+						    text: "{singleRowModel>UnitPrice}",
+						    tooltip: "UnitPrice"
+						})
+		           ]
+		});
+
+	 
+		//oList.bindItems("contextmodel>/Order_Details/", oTemp);
+ 		 
+		oList.bindAggregation("items",{
+			path:"singleRowModel>/Order_Details/results",
+			template:oTemp
+		})
+	 	
+		
+		var oContainer = new sap.m.Panel("panelid", {
+			headerText:"Panel Header",
+			content:[oList]
+		});
+		
+ 
+		
+		//create and return the page.
  		return new sap.m.Page({
 			title: "Order Detail",
 			content: [
-	          	hc
+	          	hc,oContainer
           	]
 		});
 	}

@@ -17,12 +17,13 @@ sap.ui.controller("view.OrderDetail", {
 		//alert("checking for router matched to load orders");
 		//debugger;
 		//console.log(oEvent);
+		var gorderid=10258;
 		if (oEvent.getParameter("name") === "orderdetail") {
 			var oOrdersList = this.getView().byId("orderlist");
 			this.empid = oEvent.getParameter("arguments").empid;
 				this.orderid = oEvent.getParameter("arguments").orderid;
 				var model = sap.ui.getCore().byId('app').getModel('contextmodel');
-				var orderscontext = model.getContext('/Employees('+this.empid+')/Orders('+this.orderid+')/');
+				//var orderscontext = model.getContext('/Employees('+this.empid+')/Orders('+this.orderid+')/');
 			    var thisview = this.getView();
 			    //console.log("view model");
 			    //console.log(thisview.getModel());
@@ -51,18 +52,29 @@ sap.ui.controller("view.OrderDetail", {
 																					          
 																					        oTable.bindRows("singleRowModel>/results"); 
 																					        */
-			    
+
 			    var singleRowModel = new sap.ui.model.json.JSONModel();    
-			    //model.read('/Employees('+this.empid+')/Orders('+this.orderid+')', null, null, false,   
-			    model.read('/Orders('+this.orderid+')', null, null, false,
+			    model.read('/Orders('+this.orderid+')', null, {"$expand":"Order_Details"}, false,
 		                  function(oData, oResponse) {  
+			    					//debugger;
 		                             singleRowModel.setData(oData);  
 		                             thisview.setModel(singleRowModel, "singleRowModel"); 
-		                             console.log("single view model is :");
-		                             console.log(singleRowModel);
 		          },  function(oError){  
 		              alert("Read failed");}  
 		          ); 
+ 			    
+			    /* ---  Order Detail call ----- */
+			    //debugger;
+			    //thisview.setModel(model,'contextmodel');
+			    //var orderdetailcontext = model.getContext('/Orders('+this.orderid+')');
+                //thisview.setBindingContext(orderdetailcontext);
+
+		                  
+			    //order detail call
+			    //debugger;
+			    //var orderdetailcontext = model.getContext('/Orders('+this.orderid+')/');
+			    //sap.ui.getCore().byId('panelid').setModel(model);
+			    //sap.ui.getCore().byId('panelid').bindElement('/Orders('+this.orderid+')/');
 			    
 			    
 /*		          
@@ -74,6 +86,7 @@ sap.ui.controller("view.OrderDetail", {
 		        thisview.setModel(singleRowModel, "singleRowModel");    
 	*/	         
 	        
+
 		        
 		}
 	},
