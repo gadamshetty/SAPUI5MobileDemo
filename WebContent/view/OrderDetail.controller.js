@@ -72,9 +72,9 @@ sap.ui.controller("view.OrderDetail", {
 		                  
 			    //order detail call
 			    //debugger;
-			    //var orderdetailcontext = model.getContext('/Orders('+this.orderid+')/');
+			    //var orderdetailcontext = model.getContext('/Orders('+this.orderid+')/', {"$expand":"Order_Details"});
 			    //sap.ui.getCore().byId('panelid').setModel(model);
-			    //sap.ui.getCore().byId('panelid').bindElement('/Orders('+this.orderid+')/');
+			    //sap.ui.getCore().byId('bindinglist1').bindElement('/Orders('+this.orderid+')/', {"expand":"Order_Details"});
 			    
 			    
 /*		          

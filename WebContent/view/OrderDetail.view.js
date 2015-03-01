@@ -109,7 +109,7 @@ sap.ui.jsview("view.OrderDetail", {
 
 		
 		var oList = new sap.m.List('productlist', {
-		    headerText : "Products",
+		    headerText : "Product Details",
 		    noDataText: "No Products Found",
 		    columns:[
 		             	new sap.m.Column("qt",{
@@ -143,8 +143,25 @@ sap.ui.jsview("view.OrderDetail", {
 		})
 	 	
 		
+		///dummy control
+		/*
+				var oList1 = new sap.m.List("bindinglist1", {
+			headerText: "test binding",
+			noDataText: "No binding"
+		});
+		
+		var oTemp = new sap.m.StandardListItem({
+		    title: "{contextmodel>UnitPrice}",
+		});
+		
+		oList1.setModel(sap.ui.getCore().byId('app').getModel('contextmodel'));
+		oList1.bindElement("/Orders(10249)/", {"expand":"Order_Details"});
+		oList1.bindItems("contextmodel>Order_Details/0", oTemp);
+		*/
+		/////
+		
 		var oContainer = new sap.m.Panel("panelid", {
-			headerText:"Panel Header",
+			headerText:"Products",
 			content:[oList]
 		});
 		
