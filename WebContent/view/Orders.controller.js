@@ -5,6 +5,7 @@ sap.ui.controller("view.Orders", {
 		var oPrevHash = oHistory.getPreviousHash();
 		if (oPrevHash !== undefined) {
 			window.history.go(-1);
+			//this.navTo("home", {}, true);
 		} else {
 			this.navTo("home", {}, true);
 		}

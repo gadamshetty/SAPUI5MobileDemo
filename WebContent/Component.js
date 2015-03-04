@@ -39,6 +39,12 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.ui5.Component", {
 					targetAggregation : "masterPages",
 					subroutes : [
 						{
+							pattern: "",
+							name: "home",
+							view: "Empty",
+							targetAggregation: "detailPages"
+						},
+						{
 							pattern: "product/{productId}",
 							name: "cartProduct",
 							view: "orders",

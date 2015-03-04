@@ -9,7 +9,11 @@ sap.ui.jsview("view.App", {
 		// to avoid scrollbars on desktop the root view must be set to block display
 		this.setDisplayBlock(true);
 
-		return new sap.m.SplitApp("splitApp", {});
+		return new sap.m.SplitApp("splitApp", {
+			defaultTransitionNameMaster:"fade",
+			defaultTransitionNameDetail: "fade",
+			backgroundColor:"lightgreen"
+		});
 	}
 
 });

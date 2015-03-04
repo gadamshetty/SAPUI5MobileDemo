@@ -12,6 +12,7 @@ sap.ui.jsview("view.OrderDetail", {
 	* Since the Controller is given to this method, its eent handlers can be attached right away. 
 	* @memberOf view.OrderDetail
 	*/ 
+
 	createContent : function(oController) {
 		
 		
@@ -19,7 +20,7 @@ sap.ui.jsview("view.OrderDetail", {
 		var shipname = new sap.ui.commons.TextView("customertextview", {
 		    // bind text property of textview to firstName property in the model
 		    text: "{singleRowModel>/ShipName}",
-		    tooltip: "Ship Name"
+		    tooltip: oController.createToolTip("snt","Ship Name","Ship Name")
 		});
 		
 		var customercellitem = new sap.suite.ui.commons.HeaderCellItem("customercellitem",{
@@ -34,7 +35,7 @@ sap.ui.jsview("view.OrderDetail", {
 		var orderdate = new sap.ui.commons.TextView("orderdt", {
 		    // bind text property of textview to firstName property in the model
 		    text: "{singleRowModel>/OrderDate}",
-		    tooltip: "Order Date"
+		    tooltip: oController.createToolTip("odt","Order Date","Order Date")
 		});
 		
 		var orderdtcellitem = new sap.suite.ui.commons.HeaderCellItem("orderdtcellitem",{

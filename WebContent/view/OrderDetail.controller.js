@@ -12,7 +12,13 @@ sap.ui.controller("view.OrderDetail", {
 		this._router.attachRoutePatternMatched(this._loadOrderDetail, this);
 		//this._router.getRoute("orderdetail").attachPatternMatched(this._loadOrderDetail, this);
 	},
-
+	createToolTip : function(id, title, text){
+		return new sap.ui.commons.RichTooltip( 
+				id,
+				{title: title,
+				text:text
+				});
+	},
 	_loadOrderDetail : function(oEvent) {
 		//alert("checking for router matched to load orders");
 		//debugger;

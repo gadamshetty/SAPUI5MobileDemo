@@ -14,9 +14,7 @@ sap.ui.jsview("view.Home", {
 		var oList = new sap.m.List('customerlist', {
 		    headerText : "Customers",
 		    noDataText: "No Customers Found"
-		    
 		});
-
 		
 		var oTemp = new sap.m.StandardListItem({
 		    title: "{contextmodel>FirstName}",
